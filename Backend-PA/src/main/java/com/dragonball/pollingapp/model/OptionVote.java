@@ -5,17 +5,17 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class OptionVote {
 
-    private String voteOption;
+    private String optionText;
     private Long voteCount = 0L;
 
     public OptionVote(){}
 
-    public String getVoteOption() {
-        return voteOption;
+    public String getOptionText() {
+        return optionText;
     }
 
-    public void setVoteOption(String voteOption) {
-        this.voteOption = voteOption;
+    public void setOptionText(String optionText) {
+        this.optionText = optionText;
     }
 
     public Long getVoteCount() {

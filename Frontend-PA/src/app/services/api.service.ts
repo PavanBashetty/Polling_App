@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  createPoll(poll:Poll):Observable<Poll>{
+  createPoll(poll:Partial<Poll>):Observable<Poll>{
     return this.http.post<Poll>(`${environment.BASE_URL}`,poll);
   }
 
