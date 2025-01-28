@@ -13,10 +13,7 @@ public class Poll {
     private String question;
 
     @ElementCollection
-    private List<String> options = new ArrayList<>();
-
-    @ElementCollection
-    private List<Long> votes = new ArrayList<>();
+    private List<OptionVote> options = new ArrayList<>();
 
     public Poll(){}
 
@@ -32,19 +29,11 @@ public class Poll {
         this.question = question;
     }
 
-    public List<String> getOptions() {
+    public List<OptionVote> getOptions() {
         return options;
     }
 
-    public void setOptions(List<String> options) {
+    public void setOptions(List<OptionVote> options) {
         this.options = options;
-    }
-
-    public List<Long> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(List<Long> votes) {
-        this.votes = votes;
     }
 }
