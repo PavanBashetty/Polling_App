@@ -46,6 +46,14 @@ export class PollComponent {
     })
   }
 
+  addOption(){
+    this.newPoll.options?.push({optionText:'', voteCount:0});
+  }
+
+  areAllOptionsFilled():boolean{
+    return this.newPoll.options?.every(option=>option.optionText.trim() !== '') ?? false;
+  }
+
   resetPoll(){
     this.newPoll = {
       question:'',
@@ -54,6 +62,20 @@ export class PollComponent {
         {optionText:'', voteCount:0}
       ]
     };
+  }
+
+  vote(pollId:number, optionIndex:number){
+    this.apiService.vote(pollId,optionIndex).subscribe({
+      next:()=>{
+        const poll = this.polls.find(p=>p.id === pollId);
+        if(poll){
+          poll.options[optionIndex].voteCount++;
+        }
+        console.log("Voting success");
+        //this.loadPolls();
+      },
+      error:(error)=>{console.error(error)}
+    })
   }
 
 }

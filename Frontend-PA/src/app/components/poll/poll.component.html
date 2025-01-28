@@ -7,11 +7,17 @@
         @for (option of newPoll.options; track $index) {
             <div class="input-group mb-2">
                 <input type="text" placeholder="Option" class="form-control" [(ngModel)]="option.optionText" required>
+                @if ((newPoll.options?.length ?? 0) > 2) {
+                    <button class="btn btn-danger" (click)="newPoll.options?.splice($index,1)">Remove</button>
+                }
             </div>
         }
     </div>
 
-    <button class="btn btn-primary" (click)="createPoll()">Create Poll</button>
+    <div>
+        <button class="btn btn-secondary" (click)="addOption()">Add another poll</button>&nbsp;
+        <button class="btn btn-primary" (click)="createPoll()" [disabled]="!areAllOptionsFilled()">Create Poll</button>
+    </div>
 
     <h2 class="mt-4 text-center">Available Polls</h2>
     <div class="polls-list">
@@ -21,7 +27,7 @@
             <div class="options-list">
                 @for (option of poll.options; track $index;) {
                 <div>
-                    <button class="btn btn-outline-primary me-2 mt-2">{{option.optionText}} ({{option.voteCount}}
+                    <button class="btn btn-outline-primary me-2 mt-2" (click)="vote(poll.id, $index)" >{{option.optionText}} ({{option.voteCount}}
                         votes)</button>
                 </div>
                 }
